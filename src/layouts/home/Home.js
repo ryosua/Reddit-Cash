@@ -4,7 +4,7 @@ import { Container } from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import PropTypes from 'proptypes'
 import { drizzleConnect } from 'drizzle-react'
-import Posts from '../../components/Posts'
+import PostsContainer from '../../containers/PostsContainer'
 import { Footer } from '../../components/Footer'
 import SubmitPost from '../SubmitPost'
 import { Announcements } from '../../components/Announcements'
@@ -75,7 +75,10 @@ class Home extends Component {
                             <SubmitPost {...props} handleSubmitPost={this.submitPost} loading={ipfsReady} />
                         )}
                     />
-                    <Route path={routes.posts} render={props => <Posts {...props} sortMode={this.state.sortMode} />} />
+                    <Route
+                        path={routes.posts}
+                        render={props => <PostsContainer {...props} sortMode={this.state.sortMode} />}
+                    />
                     <Redirect from={routes.home} to={routes.posts} />
                 </Switch>
                 <Footer />
